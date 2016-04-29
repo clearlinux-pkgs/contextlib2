@@ -4,7 +4,7 @@
 #
 Name     : contextlib2
 Version  : 0.5.1
-Release  : 7
+Release  : 8
 URL      : https://pypi.python.org/packages/source/c/contextlib2/contextlib2-0.5.1.tar.gz
 Source0  : https://pypi.python.org/packages/source/c/contextlib2/contextlib2-0.5.1.tar.gz
 Summary  : Backports and enhancements for the contextlib module
