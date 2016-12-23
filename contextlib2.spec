@@ -4,7 +4,7 @@
 #
 Name     : contextlib2
 Version  : 0.5.4
-Release  : 14
+Release  : 15
 URL      : http://pypi.debian.net/contextlib2/contextlib2-0.5.4.tar.gz
 Source0  : http://pypi.debian.net/contextlib2/contextlib2-0.5.4.tar.gz
 Summary  : Backports and enhancements for the contextlib module
