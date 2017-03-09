@@ -4,23 +4,18 @@
 #
 Name     : contextlib2
 Version  : 0.5.4
-Release  : 16
+Release  : 17
 URL      : http://pypi.debian.net/contextlib2/contextlib2-0.5.4.tar.gz
 Source0  : http://pypi.debian.net/contextlib2/contextlib2-0.5.4.tar.gz
 Summary  : Backports and enhancements for the contextlib module
 Group    : Development/Tools
 License  : Python-2.0
 Requires: contextlib2-python
-BuildRequires : linecache2-python
 BuildRequires : pbr
 BuildRequires : pip
 BuildRequires : python-dev
 BuildRequires : python3-dev
 BuildRequires : setuptools
-BuildRequires : six
-BuildRequires : six-python
-BuildRequires : unittest2
-BuildRequires : unittest2-python
 
 %description
 .. image:: https://jazzband.co/static/img/badge.svg
@@ -40,7 +35,7 @@ python components for the contextlib2 package.
 
 %build
 export LANG=C
-export SOURCE_DATE_EPOCH=1484539898
+export SOURCE_DATE_EPOCH=1489027148
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
@@ -50,7 +45,7 @@ export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 python2 test_contextlib2.py
 %install
-export SOURCE_DATE_EPOCH=1484539898
+export SOURCE_DATE_EPOCH=1489027148
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
