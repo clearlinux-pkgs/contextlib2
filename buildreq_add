@@ -3,3 +3,5 @@
 unittest2-legacypython
 traceback2-legacypython
 linecache2-legacypython
+six
+six-legacypython
