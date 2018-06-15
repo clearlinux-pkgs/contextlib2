@@ -4,19 +4,18 @@
 #
 Name     : contextlib2
 Version  : 0.5.5
-Release  : 32
+Release  : 33
 URL      : http://pypi.debian.net/contextlib2/contextlib2-0.5.5.tar.gz
 Source0  : http://pypi.debian.net/contextlib2/contextlib2-0.5.5.tar.gz
 Summary  : Backports and enhancements for the contextlib module
 Group    : Development/Tools
 License  : Python-2.0
-Requires: contextlib2-legacypython
 Requires: contextlib2-python3
+Requires: contextlib2-license
 Requires: contextlib2-python
 BuildRequires : linecache2-legacypython
 BuildRequires : pbr
 BuildRequires : pip
-
 BuildRequires : python3-dev
 BuildRequires : setuptools
 BuildRequires : six
@@ -36,6 +35,14 @@ Requires: python-core
 
 %description legacypython
 legacypython components for the contextlib2 package.
+
+
+%package license
+Summary: license components for the contextlib2 package.
+Group: Default
+
+%description license
+license components for the contextlib2 package.
 
 
 %package python
@@ -64,7 +71,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1523287033
+export SOURCE_DATE_EPOCH=1529097327
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
@@ -74,8 +81,10 @@ export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 python2 test_contextlib2.py
 %install
-export SOURCE_DATE_EPOCH=1523287033
+export SOURCE_DATE_EPOCH=1529097327
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/doc/contextlib2
+cp LICENSE.txt %{buildroot}/usr/share/doc/contextlib2/LICENSE.txt
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
 echo ----[ mark ]----
@@ -88,6 +97,10 @@ echo ----[ mark ]----
 %files legacypython
 %defattr(-,root,root,-)
 /usr/lib/python2*/*
+
+%files license
+%defattr(-,root,root,-)
+/usr/share/doc/contextlib2/LICENSE.txt
 
 %files python
 %defattr(-,root,root,-)
