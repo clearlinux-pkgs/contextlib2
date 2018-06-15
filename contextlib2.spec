@@ -16,7 +16,7 @@ Requires: contextlib2-python
 BuildRequires : linecache2-legacypython
 BuildRequires : pbr
 BuildRequires : pip
-BuildRequires : python-dev
+
 BuildRequires : python3-dev
 BuildRequires : setuptools
 BuildRequires : six
