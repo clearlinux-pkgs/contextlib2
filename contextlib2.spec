@@ -4,23 +4,17 @@
 #
 Name     : contextlib2
 Version  : 0.5.5
-Release  : 46
+Release  : 47
 URL      : http://pypi.debian.net/contextlib2/contextlib2-0.5.5.tar.gz
 Source0  : http://pypi.debian.net/contextlib2/contextlib2-0.5.5.tar.gz
 Summary  : Backports and enhancements for the contextlib module
 Group    : Development/Tools
 License  : Python-2.0
-Requires: contextlib2-python3
-Requires: contextlib2-license
-Requires: contextlib2-python
+Requires: contextlib2-license = %{version}-%{release}
+Requires: contextlib2-python = %{version}-%{release}
+Requires: contextlib2-python3 = %{version}-%{release}
+BuildRequires : buildreq-distutils3
 BuildRequires : linecache2-legacypython
-BuildRequires : pbr
-BuildRequires : pip
-BuildRequires : python-core
-BuildRequires : python3-core
-BuildRequires : python3-dev
-BuildRequires : setuptools
-BuildRequires : setuptools-legacypython
 BuildRequires : six
 BuildRequires : six-legacypython
 BuildRequires : traceback2-legacypython
@@ -30,15 +24,6 @@ BuildRequires : unittest2-legacypython
 .. image:: https://jazzband.co/static/img/badge.svg
 :target: https://jazzband.co/
 :alt: Jazzband
-
-%package legacypython
-Summary: legacypython components for the contextlib2 package.
-Group: Default
-Requires: python-core
-
-%description legacypython
-legacypython components for the contextlib2 package.
-
 
 %package license
 Summary: license components for the contextlib2 package.
@@ -51,7 +36,7 @@ license components for the contextlib2 package.
 %package python
 Summary: python components for the contextlib2 package.
 Group: Default
-Requires: contextlib2-python3
+Requires: contextlib2-python3 = %{version}-%{release}
 
 %description python
 python components for the contextlib2 package.
@@ -74,9 +59,9 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1530371361
-python2 setup.py build -b py2
-python3 setup.py build -b py3
+export SOURCE_DATE_EPOCH=1554307043
+export MAKEFLAGS=%{?_smp_mflags}
+python3 setup.py build
 
 %check
 export http_proxy=http://127.0.0.1:9/
@@ -84,12 +69,11 @@ export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 python2 test_contextlib2.py
 %install
-export SOURCE_DATE_EPOCH=1530371361
+export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/contextlib2
-cp LICENSE.txt %{buildroot}/usr/share/doc/contextlib2/LICENSE.txt
-python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
-python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
+mkdir -p %{buildroot}/usr/share/package-licenses/contextlib2
+cp LICENSE.txt %{buildroot}/usr/share/package-licenses/contextlib2/LICENSE.txt
+python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
@@ -97,13 +81,9 @@ echo ----[ mark ]----
 %files
 %defattr(-,root,root,-)
 
-%files legacypython
-%defattr(-,root,root,-)
-/usr/lib/python2*/*
-
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/contextlib2/LICENSE.txt
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/contextlib2/LICENSE.txt
 
 %files python
 %defattr(-,root,root,-)
