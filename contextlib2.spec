@@ -4,7 +4,7 @@
 #
 Name     : contextlib2
 Version  : 0.5.5
-Release  : 51
+Release  : 53
 URL      : http://pypi.debian.net/contextlib2/contextlib2-0.5.5.tar.gz
 Source0  : http://pypi.debian.net/contextlib2/contextlib2-0.5.5.tar.gz
 Summary  : Backports and enhancements for the contextlib module
@@ -14,7 +14,7 @@ Requires: contextlib2-license = %{version}-%{release}
 Requires: contextlib2-python = %{version}-%{release}
 Requires: contextlib2-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
-BuildRequires : python-core
+BuildRequires : python3
 BuildRequires : six
 BuildRequires : unittest2
 BuildRequires : unittest2-python
@@ -57,8 +57,13 @@ python3 components for the contextlib2 package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1554342011
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1570660976
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$CFLAGS -fno-lto "
+export FFLAGS="$CFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 

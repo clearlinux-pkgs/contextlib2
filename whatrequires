@@ -1,3 +1,7 @@
 # This file contains recursive sources that require this package
-deprecated-traceback2
+futurist
+importlib_metadata
+llfuse
+python-zstandard
+taskflow
 traceback2
