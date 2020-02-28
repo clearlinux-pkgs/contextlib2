@@ -4,7 +4,7 @@
 #
 Name     : contextlib2
 Version  : 0.5.5
-Release  : 56
+Release  : 57
 URL      : http://pypi.debian.net/contextlib2/contextlib2-0.5.5.tar.gz
 Source0  : http://pypi.debian.net/contextlib2/contextlib2-0.5.5.tar.gz
 Summary  : Backports and enhancements for the contextlib module
@@ -21,8 +21,61 @@ BuildRequires : unittest2-python
 
 %description
 .. image:: https://jazzband.co/static/img/badge.svg
-:target: https://jazzband.co/
-:alt: Jazzband
+   :target: https://jazzband.co/
+   :alt: Jazzband
+
+.. image:: https://readthedocs.org/projects/contextlib2/badge/?version=latest
+   :target: https://contextlib2.readthedocs.org/
+   :alt: Latest Docs
+
+.. image:: https://img.shields.io/travis/jazzband/contextlib2/master.svg
+   :target: http://travis-ci.org/jazzband/contextlib2
+
+.. image:: https://coveralls.io/repos/github/jazzband/contextlib2/badge.svg?branch=master
+   :target: https://coveralls.io/github/jazzband/contextlib2?branch=master
+
+.. image:: https://landscape.io/github/jazzband/contextlib2/master/landscape.svg
+   :target: https://landscape.io/github/jazzband/contextlib2/
+
+contextlib2 is a backport of the `standard library's contextlib
+module <https://docs.python.org/3.5/library/contextlib.html>`_ to
+earlier Python versions.
+
+It also serves as a real world proving ground for possible future
+enhancements to the standard library version.
+
+Development
+-----------
+
+contextlib2 has no runtime dependencies, but requires ``unittest2`` for testing
+on Python 2.x, as well as ``setuptools`` and ``wheel`` to generate universal
+wheel archives.
+
+Local testing is just a matter of running ``python test_contextlib2.py``.
+
+You can test against multiple versions of Python with
+`tox <https://tox.testrun.org/>`_::
+
+    pip install tox
+    tox
+
+Versions currently tested in both tox and Travis CI are:
+
+* CPython 2.6
+* CPython 2.7
+* CPython 3.4
+* CPython 3.5
+* CPython 3.6
+* CPython 3.7 (CPython development branch)
+* PyPy
+
+Versions currently tested only in tox are:
+
+* PyPy3
+
+This is due to an exception chaining compatibility bug that was fixed in
+the PyPy3 5.5 alpha release, while the version on Travis CI (as of April 2017)
+is still the older PyPy3 2.4.0 release.
 
 %package license
 Summary: license components for the contextlib2 package.
@@ -45,6 +98,7 @@ python components for the contextlib2 package.
 Summary: python3 components for the contextlib2 package.
 Group: Default
 Requires: python3-core
+Provides: pypi(contextlib2)
 
 %description python3
 python3 components for the contextlib2 package.
@@ -52,13 +106,15 @@ python3 components for the contextlib2 package.
 
 %prep
 %setup -q -n contextlib2-0.5.5
+cd %{_builddir}/contextlib2-0.5.5
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1570660976
+export SOURCE_DATE_EPOCH=1582913357
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
@@ -71,7 +127,7 @@ python3 setup.py build
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/contextlib2
-cp LICENSE.txt %{buildroot}/usr/share/package-licenses/contextlib2/LICENSE.txt
+cp %{_builddir}/contextlib2-0.5.5/LICENSE.txt %{buildroot}/usr/share/package-licenses/contextlib2/ec7666523bed16e7f16d28b4d628caf55a31c7b4
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -82,7 +138,7 @@ echo ----[ mark ]----
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/contextlib2/LICENSE.txt
+/usr/share/package-licenses/contextlib2/ec7666523bed16e7f16d28b4d628caf55a31c7b4
 
 %files python
 %defattr(-,root,root,-)

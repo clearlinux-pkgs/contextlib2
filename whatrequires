@@ -5,3 +5,4 @@ llfuse
 python-zstandard
 taskflow
 traceback2
+virtualenv
