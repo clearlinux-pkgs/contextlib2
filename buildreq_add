@@ -2,5 +2,3 @@
 # picked up automatically. One name per line, no whitespace.
 python3
 six
-unittest2
-unittest2-python
