@@ -1,8 +1,5 @@
 # This file contains recursive sources that require this package
-futurist
 importlib_metadata
 llfuse
 python-zstandard
-taskflow
 traceback2
-virtualenv
