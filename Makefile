@@ -1,5 +1,5 @@
 PKG_NAME := contextlib2
-URL = http://pypi.debian.net/contextlib2/contextlib2-0.5.5.tar.gz
+URL = https://files.pythonhosted.org/packages/c7/13/37ea7805ae3057992e96ecb1cffa2fa35c2ef4498543b846f90dd2348d8f/contextlib2-21.6.0.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
