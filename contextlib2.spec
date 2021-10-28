@@ -4,7 +4,7 @@
 #
 Name     : contextlib2
 Version  : 21.6.0
-Release  : 69
+Release  : 70
 URL      : https://files.pythonhosted.org/packages/c7/13/37ea7805ae3057992e96ecb1cffa2fa35c2ef4498543b846f90dd2348d8f/contextlib2-21.6.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/c7/13/37ea7805ae3057992e96ecb1cffa2fa35c2ef4498543b846f90dd2348d8f/contextlib2-21.6.0.tar.gz
 Summary  : Backports and enhancements for the contextlib module
